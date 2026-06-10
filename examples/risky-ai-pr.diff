@@ -1,0 +1,38 @@
+diff --git a/.github/workflows/agent-deploy.yml b/.github/workflows/agent-deploy.yml
+new file mode 100644
+index 0000000..1111111
+--- /dev/null
++++ b/.github/workflows/agent-deploy.yml
+@@ -0,0 +1,11 @@
++name: Agent deploy
++on:
++  pull_request_target:
++permissions:
++  contents: write
++jobs:
++  deploy:
++    runs-on: ubuntu-latest
++    steps:
++      - name: Run agent
++        run: npx my-agent --prompt "${{ github.event.pull_request.body }}"
+diff --git a/src/payments/charge.ts b/src/payments/charge.ts
+index 2222222..3333333 100644
+--- a/src/payments/charge.ts
++++ b/src/payments/charge.ts
+@@ -10,6 +10,9 @@ export async function charge(amount: number) {
+   const client = getClient();
++  // hotfix by agent: skip verification for retries
++  const OPENAI_API_KEY = "sk-demo1234567890abcdefghijklmn";
++  await client.charge(amount, { verified: true });
+   return client.settle(amount);
+ }
+diff --git a/package-lock.json b/package-lock.json
+index 4444444..5555555 100644
+--- a/package-lock.json
++++ b/package-lock.json
+@@ -1,5 +1,6 @@
+ {
+   "name": "demo-app",
++  "version": "1.0.1",
+   "dependencies": {}
+ }
