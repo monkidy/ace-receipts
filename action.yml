@@ -1,5 +1,5 @@
 name: "ACE Receipts"
-description: "AI agents can cook. Make them bring receipts. Scans AI agent workflows and AI generated diffs for proof, risk, permission, missing evidence, and closeout."
+description: "Make AI agents bring receipts. Local checks that flag risk in agentic workflows and AI diffs, for human review."
 author: "Hichem Benali"
 branding:
   icon: "shield"
