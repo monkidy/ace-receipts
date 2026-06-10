@@ -2,7 +2,7 @@ import { GUIDANCE } from "./rules.js";
 import { aggregate } from "./risk.js";
 import type { Finding, Receipt } from "../types/receipt.js";
 
-export const VERSION = "0.1.1";
+export const VERSION = "0.1.2";
 
 const SEV_RANK: Record<Finding["severity"], number> = { high: 0, medium: 1, low: 2 };
 

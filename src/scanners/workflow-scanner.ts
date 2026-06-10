@@ -1,6 +1,5 @@
 import fs from "node:fs";
 import path from "node:path";
-import { globSync } from "glob";
 import {
   AI_MARKERS,
   COMMENT_WRITE_RES,
@@ -251,9 +250,27 @@ export function repoHasReceiptPolicy(dir: string): boolean {
   );
 }
 
+/** List .yml and .yaml files under .github/workflows, recursively. Native fs, no glob dependency. */
+export function listWorkflowFiles(dir: string): string[] {
+  const root = path.join(dir, ".github", "workflows");
+  if (!fs.existsSync(root)) return [];
+  const found: string[] = [];
+  const walk = (d: string): void => {
+    for (const entry of fs.readdirSync(d, { withFileTypes: true })) {
+      const full = path.join(d, entry.name);
+      if (entry.isDirectory()) {
+        walk(full);
+      } else if (/\.ya?ml$/i.test(entry.name)) {
+        found.push(full);
+      }
+    }
+  };
+  walk(root);
+  return found.map((f) => path.relative(dir, f).replace(/\\/g, "/")).sort();
+}
+
 export function scanWorkflows(dir: string): { findings: Finding[]; summary: string } {
-  const patterns = [".github/workflows/**/*.yml", ".github/workflows/**/*.yaml"];
-  const files = globSync(patterns, { cwd: dir, nodir: true, dot: true }).sort();
+  const files = listWorkflowFiles(dir);
 
   if (files.length === 0) {
     return {
