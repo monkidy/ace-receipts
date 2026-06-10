@@ -1,5 +1,7 @@
 # ACE Receipts
 
+[![CI](https://github.com/monkidy/ace-receipts/actions/workflows/ci.yml/badge.svg)](https://github.com/monkidy/ace-receipts/actions/workflows/ci.yml) [![npm](https://img.shields.io/npm/v/ace-receipts)](https://www.npmjs.com/package/ace-receipts) [![license](https://img.shields.io/badge/license-Apache--2.0-blue)](LICENSE)
+
 AI agents can cook. Make them bring receipts.
 
 ACE Receipts is a tiny CLI + GitHub Action that scans AI-agent GitHub workflows and AI-generated diffs for proof, risk, permission, missing evidence, and closeout.
@@ -52,6 +54,24 @@ AI agents now open PRs, edit workflows, and ship diffs. Output is cheap. Trust i
 A receipt is the difference between "the agent said it is fine" and "here is what was seen, what was proven, what is risky, and what is allowed to happen next."
 
 ACE Receipts never calls a model. It reads files locally, applies deterministic rules, and writes the receipt. It flags common risk patterns and helps review. It does not replace human review, and it does not claim to catch every attack.
+
+## What it does / what it does not do
+
+What it does:
+
+- scans `.github/workflows` for common agentic risk patterns, locally
+- scans diffs for risk, missing tests, secrets, and missing evidence
+- applies deterministic rules: same input, same verdict
+- writes a Markdown and a JSON receipt on every run
+- fails closed: exit 0 PASS, exit 1 HOLD, exit 2 FAIL
+
+What it does not do:
+
+- it does not call an LLM or any API, and it makes no network calls
+- it does not send your code anywhere
+- it does not modify your repository: it only writes `.ace/receipts/`
+- it does not replace human review
+- it does not claim to catch every attack
 
 ## Install / run
 
@@ -136,7 +156,7 @@ Reads a unified diff from stdin, or from `git diff` if stdin is empty, then appl
 {
   "schema": "ace.receipt.v0",
   "tool": "ace-receipts",
-  "version": "0.1.0",
+  "version": "0.1.2",
   "command": "scan-workflows",
   "verdict": "hold",
   "gate": "fail",
@@ -203,6 +223,16 @@ npx ace-receipts check --file examples/risky-ai-pr.diff
 ```
 
 Sample receipts live in `examples/receipts/`.
+
+## Limitations
+
+Honest list, V0:
+
+- detection is marker and regex based, false positives happen (for example `cursor` or `agent` appearing in unrelated contexts)
+- no structural YAML parsing yet, rules read lines, not the workflow graph
+- secret patterns are heuristic and not exhaustive
+- `latest.md` and `latest.json` are overwritten on each run, no history yet
+- rules target common risk patterns, not novel or determined attackers
 
 ## Roadmap
 
