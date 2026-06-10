@@ -1,0 +1,55 @@
+{
+  "name": "ace-receipts",
+  "version": "0.1.0",
+  "description": "AI agents can cook. Make them bring receipts. Tiny CLI + GitHub Action that scans AI-agent workflows and AI-generated diffs for proof, risk, permission, missing evidence, and closeout.",
+  "license": "Apache-2.0",
+  "author": "Hichem Benali",
+  "type": "module",
+  "bin": {
+    "ace-receipts": "dist/src/cli.js"
+  },
+  "main": "dist/src/cli.js",
+  "files": [
+    "dist/src",
+    "action.yml",
+    "README.md",
+    "LICENSE"
+  ],
+  "engines": {
+    "node": ">=18.17"
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "test": "npm run build && node --test dist/test/cli.test.js dist/test/diff-scanner.test.js dist/test/receipt.test.js dist/test/workflow-scanner.test.js",
+    "demo": "npm run build && node dist/src/cli.js demo",
+    "prepublishOnly": "npm run build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/monkidy/ace-receipts.git"
+  },
+  "homepage": "https://github.com/monkidy/ace-receipts#readme",
+  "bugs": {
+    "url": "https://github.com/monkidy/ace-receipts/issues"
+  },
+  "keywords": [
+    "ai",
+    "agents",
+    "ci",
+    "security",
+    "github-actions",
+    "receipts",
+    "governance",
+    "code-review",
+    "prompt-injection"
+  ],
+  "dependencies": {
+    "commander": "^12.1.0",
+    "glob": "^10.4.5"
+  },
+  "devDependencies": {
+    "@types/node": "^20.14.0",
+    "typescript": "^5.5.4"
+  }
+}

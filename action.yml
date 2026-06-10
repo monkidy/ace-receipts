@@ -1,0 +1,53 @@
+name: "ACE Receipts"
+description: "AI agents can cook. Make them bring receipts. Scans AI agent workflows and AI generated diffs for proof, risk, permission, missing evidence, and closeout."
+author: "Hichem Benali"
+branding:
+  icon: "shield"
+  color: "purple"
+
+inputs:
+  mode:
+    description: "scan-workflows or diff"
+    required: false
+    default: "scan-workflows"
+  base:
+    description: "git base ref for diff mode, for example origin/main"
+    required: false
+    default: ""
+  working-directory:
+    description: "directory to run in"
+    required: false
+    default: "."
+
+runs:
+  using: "composite"
+  steps:
+    - name: Build ace-receipts
+      shell: bash
+      run: |
+        cd "$GITHUB_ACTION_PATH"
+        npm ci --no-audit --no-fund
+        npm run build
+
+    - name: Run the gate
+      shell: bash
+      working-directory: ${{ inputs.working-directory }}
+      env:
+        ACE_MODE: ${{ inputs.mode }}
+        ACE_BASE: ${{ inputs.base }}
+      run: |
+        set +e
+        if [ "$ACE_MODE" = "diff" ]; then
+          if [ -n "$ACE_BASE" ]; then
+            node "$GITHUB_ACTION_PATH/dist/src/cli.js" check --diff --base "$ACE_BASE"
+          else
+            node "$GITHUB_ACTION_PATH/dist/src/cli.js" check --diff
+          fi
+        else
+          node "$GITHUB_ACTION_PATH/dist/src/cli.js" scan-workflows
+        fi
+        code=$?
+        if [ -f .ace/receipts/latest.md ]; then
+          cat .ace/receipts/latest.md >> "$GITHUB_STEP_SUMMARY"
+        fi
+        exit $code

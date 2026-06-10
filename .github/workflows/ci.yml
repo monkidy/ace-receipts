@@ -1,0 +1,38 @@
+name: CI
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+    steps:
+      # TODO before publishing: pin these to full commit SHAs.
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - run: npm ci
+      - run: npm run typecheck
+      - run: npm test
+
+      - name: Self scan
+        run: |
+          node dist/src/cli.js scan-workflows
+          cat .ace/receipts/latest.md >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Example gates
+        run: |
+          node dist/src/cli.js check --file examples/safe-workflow.yml
+          if node dist/src/cli.js check --file examples/vulnerable-workflow.yml; then
+            echo "vulnerable example was expected to FAIL"
+            exit 1
+          else
+            echo "vulnerable example correctly blocked"
+          fi
