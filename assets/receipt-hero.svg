@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="880" height="470" viewBox="0 0 880 470" font-family="'JetBrains Mono','IBM Plex Mono',ui-monospace,monospace">
+  <defs>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="10" stdDeviation="18" flood-color="#000000" flood-opacity="0.35"/>
+    </filter>
+  </defs>
+
+  <rect width="880" height="470" fill="#0B0E14"/>
+
+  <!-- card -->
+  <g filter="url(#shadow)">
+    <rect x="60" y="44" width="760" height="382" rx="14" fill="#0D1117" stroke="#222B36" stroke-width="1.5"/>
+  </g>
+
+  <!-- title bar -->
+  <circle cx="92" cy="76" r="6" fill="#F85149"/>
+  <circle cx="112" cy="76" r="6" fill="#E3B341"/>
+  <circle cx="132" cy="76" r="6" fill="#1FA463"/>
+  <text x="420" y="81" text-anchor="middle" font-size="15" fill="#8B949E" letter-spacing="1">ace-receipts</text>
+  <text x="788" y="81" text-anchor="end" font-size="12" fill="#586069" letter-spacing="2">DEMO</text>
+  <line x1="60" y1="100" x2="820" y2="100" stroke="#222B36" stroke-width="1.5"/>
+
+  <!-- command -->
+  <text x="92" y="142" font-size="17"><tspan fill="#1FA463">$</tspan><tspan fill="#C9D1D9"> npx ace-receipts scan-workflows</tspan></text>
+
+  <!-- verdict line -->
+  <text x="92" y="190" font-size="20" fill="#8B949E" letter-spacing="2">ACE RECEIPT</text>
+  <rect x="270" y="171" width="92" height="28" rx="6" fill="#3D2E08" stroke="#E3B341" stroke-width="1.2"/>
+  <text x="316" y="191" text-anchor="middle" font-size="17" font-weight="700" fill="#E3B341" letter-spacing="2">HOLD</text>
+
+  <line x1="92" y1="212" x2="788" y2="212" stroke="#1B222C" stroke-width="1.2"/>
+
+  <!-- fields -->
+  <text x="92" y="252" font-size="17"><tspan fill="#8B949E">gate        </tspan><tspan fill="#F85149" font-weight="700">FAIL</tspan></text>
+  <text x="92" y="284" font-size="17"><tspan fill="#8B949E">proof       </tspan><tspan fill="#E3B341">partial</tspan></text>
+  <text x="92" y="316" font-size="17"><tspan fill="#8B949E">risk        </tspan><tspan fill="#F85149">high</tspan></text>
+  <text x="92" y="348" font-size="17"><tspan fill="#8B949E">permission  </tspan><tspan fill="#E3B341">human_review_required</tspan></text>
+
+  <line x1="92" y1="370" x2="788" y2="370" stroke="#1B222C" stroke-width="1.2"/>
+
+  <!-- tagline -->
+  <text x="92" y="404" font-size="18" fill="#1FA463" font-weight="700">No receipt, no passage.</text>
+
+  <!-- brand mark -->
+  <text x="788" y="404" text-anchor="end" font-size="18" font-weight="700" letter-spacing="2"><tspan fill="#1FA463">[</tspan><tspan fill="#C9D1D9"> ACE </tspan><tspan fill="#1FA463">]</tspan></text>
+</svg>

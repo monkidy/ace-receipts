@@ -1,33 +1,41 @@
-# ACE Receipts
+<div align="center">
 
-[![CI](https://github.com/monkidy/ace-receipts/actions/workflows/ci.yml/badge.svg)](https://github.com/monkidy/ace-receipts/actions/workflows/ci.yml) [![npm](https://img.shields.io/npm/v/ace-receipts)](https://www.npmjs.com/package/ace-receipts) [![license](https://img.shields.io/badge/license-Apache--2.0-blue)](LICENSE)
+<img src="assets/receipt-hero.svg" alt="ACE RECEIPT: HOLD. gate FAIL, proof partial, risk high, permission human_review_required. No receipt, no passage." width="780">
 
-AI agents can cook. Make them bring receipts.
+# ace-receipts
 
-ACE Receipts is a tiny CLI + GitHub Action that scans AI-agent GitHub workflows and AI-generated diffs for proof, risk, permission, missing evidence, and closeout.
+**AI agents can cook. Make them bring receipts.**
 
-No cloud. No API key. No vibes.
+A tiny CLI and GitHub Action that gates AI-agent workflows and AI-generated diffs.
+Deterministic, fail-closed, zero LLM, zero network.
+
+[![CI](https://github.com/monkidy/ace-receipts/actions/workflows/ci.yml/badge.svg)](https://github.com/monkidy/ace-receipts/actions/workflows/ci.yml)
+[![npm](https://img.shields.io/npm/v/ace-receipts?color=1FA463)](https://www.npmjs.com/package/ace-receipts)
+[![downloads](https://img.shields.io/npm/dt/ace-receipts?color=111111&label=downloads)](https://www.npmjs.com/package/ace-receipts)
+[![license](https://img.shields.io/badge/license-Apache--2.0-blue)](LICENSE)
 
 ```bash
 npx ace-receipts demo
 ```
 
-## The Gate Wizard
+</div>
+
+---
+
+## Why receipts?
+
+AI agents now open PRs, edit workflows, and ship diffs. Output is cheap. Trust is not.
+
+A receipt is the difference between "the agent said it is fine" and "here is what was seen, what was proven, what is risky, and what is allowed to happen next."
+
+ACE Receipts never calls a model. It reads files locally, applies deterministic rules, and writes the receipt. It flags common risk patterns and helps review. It does not replace human review, and it does not claim to catch every attack.
+
+## The gate
 
 Every command ends at the gate:
 
 ```text
 ACE RECEIPT: HOLD
-
-          ✦
-      /_\ │
-     (•_•)│
-      /|_ │
-      / \ │
-   ════╪════
-         │
-
-Not yet. Bring receipts.
 
 Gate:       FAIL
 Proof:      partial
@@ -47,13 +55,18 @@ One line per verdict, always the same:
 
 The demo receipt is a HOLD, so `demo` exits 1. Fail closed is the point.
 
-## Why receipts?
+## Quickstart
 
-AI agents now open PRs, edit workflows, and ship diffs. Output is cheap. Trust is not.
+Run without installing:
 
-A receipt is the difference between "the agent said it is fine" and "here is what was seen, what was proven, what is risky, and what is allowed to happen next."
+```bash
+npx ace-receipts demo
+npx ace-receipts scan-workflows
+git diff | npx ace-receipts check --diff
+npx ace-receipts check --file path/to/file
+```
 
-ACE Receipts never calls a model. It reads files locally, applies deterministic rules, and writes the receipt. It flags common risk patterns and helps review. It does not replace human review, and it does not claim to catch every attack.
+Every command prints a terminal receipt and writes two files: `.ace/receipts/latest.md` and `.ace/receipts/latest.json`. Colors respect `NO_COLOR`; set `ACE_RECEIPTS_ASCII=1` for terminals without unicode.
 
 ## What it does / what it does not do
 
@@ -72,34 +85,6 @@ What it does not do:
 - it does not modify your repository: it only writes `.ace/receipts/`
 - it does not replace human review
 - it does not claim to catch every attack
-
-## Install / run
-
-Run without installing:
-
-```bash
-npx ace-receipts demo
-npx ace-receipts scan-workflows
-git diff | npx ace-receipts check --diff
-npx ace-receipts check --file path/to/file
-```
-
-From source:
-
-```bash
-git clone https://github.com/monkidy/ace-receipts
-cd ace-receipts
-npm install
-npm test
-node dist/src/cli.js demo
-```
-
-Every command prints a terminal receipt and writes two files:
-
-- `.ace/receipts/latest.md`
-- `.ace/receipts/latest.json`
-
-Terminal notes: colors respect `NO_COLOR`. For terminals without unicode, set `ACE_RECEIPTS_ASCII=1`.
 
 ## scan-workflows
 
