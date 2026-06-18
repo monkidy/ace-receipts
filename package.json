@@ -21,7 +21,7 @@
   "scripts": {
     "build": "tsc -p tsconfig.json",
     "typecheck": "tsc -p tsconfig.json --noEmit",
-    "test": "npm run build && node --test dist/test/cli.test.js dist/test/diff-scanner.test.js dist/test/receipt.test.js dist/test/workflow-scanner.test.js",
+    "test": "npm run build && node --test dist/test/cli.test.js dist/test/diff-scanner.test.js dist/test/receipt.test.js dist/test/report.test.js dist/test/workflow-scanner.test.js",
     "demo": "npm run build && node dist/src/cli.js demo",
     "prepublishOnly": "npm run build"
   },
