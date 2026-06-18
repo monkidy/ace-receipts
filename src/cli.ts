@@ -3,6 +3,7 @@ import { Command } from "commander";
 import { runCheckDiff } from "./commands/check-diff.js";
 import { runCheckFile } from "./commands/check-file.js";
 import { runDemo } from "./commands/demo.js";
+import { runReport } from "./commands/report.js";
 import { runScanWorkflows } from "./commands/scan-workflows.js";
 import { SLOGAN } from "./core/phrases.js";
 import { VERSION } from "./core/receipt.js";
@@ -24,6 +25,16 @@ program
   .option("--dir <path>", "repository root to scan", ".")
   .action((opts: { dir: string }) => {
     process.exitCode = runScanWorkflows(opts.dir);
+  });
+
+program
+  .command("report")
+  .description("Scan the repo and emit a shareable AI agent workflow governance report.")
+  .option("--dir <path>", "repository root to scan", ".")
+  .option("--format <fmt>", "output format: md or json", "md")
+  .option("--quiet", "write report files without printing to stdout")
+  .action((opts: { dir: string; format: string; quiet?: boolean }) => {
+    process.exitCode = runReport(opts);
   });
 
 program
