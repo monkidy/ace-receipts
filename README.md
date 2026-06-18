@@ -80,6 +80,7 @@ Run without installing:
 ```bash
 npx ace-receipts demo
 npx ace-receipts scan-workflows
+npx ace-receipts report
 git diff | npx ace-receipts check --diff
 npx ace-receipts check --file path/to/file
 ```
@@ -147,6 +148,22 @@ Reads a unified diff from stdin, or from `git diff` if stdin is empty, then appl
 | Medium | config, Docker, CI, or manifest files touched |
 | Medium | large diff (over 500 changed lines or 20 files) |
 | Low | docs only or tests only (these pass) |
+
+## report
+
+One receipt answers "can this change merge". One report answers "what is the governance posture of this repository", for a reviewer, a security lead, or a client.
+
+```bash
+npx ace-receipts report
+npx ace-receipts report --format json
+```
+
+`report` scans every workflow in the repo, aggregates the findings with the same fail-closed logic as a single receipt, and writes a shareable governance report to `.ace/reports/`:
+
+- `.ace/reports/governance-report.md`
+- `.ace/reports/governance-report.json`
+
+The report carries the overall posture (verdict, gate, proof, risk, permission, closeout), severity totals, a per-workflow inventory (which workflows use AI, and their verdict, riskiest first), the findings, and the next actions. The exit code mirrors the posture verdict, so CI can gate on the report too.
 
 ## Receipt schema
 
