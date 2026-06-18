@@ -1,6 +1,6 @@
 {
   "name": "ace-receipts",
-  "version": "0.1.3",
+  "version": "0.2.0",
   "description": "AI agents can cook. Make them bring receipts. Tiny CLI + GitHub Action that scans AI-agent workflows and AI-generated diffs for proof, risk, permission, missing evidence, and closeout.",
   "license": "Apache-2.0",
   "author": "Hichem Benali",
