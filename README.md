@@ -267,6 +267,14 @@ A receipt is a small operational record: what was seen, what was proven, what is
 
 No receipt, no passage.
 
+## Pro / Governance Pack (in progress)
+
+The CLI and the Action are free, and they stay free.
+
+For teams under audit or the EU AI Act, a **Governance Pro Pack** is in the works: hardened `.ace/policy.yml` templates, and a crosswalk from each rule to the OWASP LLM Top 10 and EU AI Act articles, so a scan result maps straight to the framework a reviewer or auditor asks about.
+
+Want it for your team? [Open an issue](https://github.com/monkidy/ace-receipts/issues/new) or [sponsor the project](https://github.com/sponsors/monkidy).
+
 ## License
 
 Apache-2.0. See [LICENSE](LICENSE).
