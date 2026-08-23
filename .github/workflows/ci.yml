@@ -1,8 +1,12 @@
 name: CI
+
+# HOSTED CI INDEPENDENCE
+# Optional reproduction only. GitHub Actions is never required for truth, merge,
+# release, or field acceptance. Run manually only when hosted reproduction is
+# worth the budget. The same checks are native repository commands.
+
 on:
-  push:
-    branches: [main]
-  pull_request:
+  workflow_dispatch:
 
 permissions:
   contents: read

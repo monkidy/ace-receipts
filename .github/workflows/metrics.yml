@@ -1,12 +1,11 @@
 name: Business metrics
 
-# Weekly business follow-up so a shipped product never goes unwatched.
-# Collects npm + GitHub metrics, appends a snapshot, and prints a short read.
-# Runs every Monday, and can be run on demand from the Actions tab.
+# HOSTED CI INDEPENDENCE
+# The metrics collector is scripts/metrics.mjs and is directly runnable on any
+# controlled machine. This workflow is only an optional manual mirror; there is
+# no paid weekly GitHub-hosted schedule.
 
 on:
-  schedule:
-    - cron: "0 8 * * 1"
   workflow_dispatch:
 
 permissions:
@@ -34,6 +33,6 @@ jobs:
           if git diff --cached --quiet; then
             echo "No metrics change."
           else
-            git commit -m "chore(metrics): weekly ace-receipts snapshot"
+            git commit -m "chore(metrics): manual ace-receipts snapshot"
             git push || echo "Push skipped (branch protection?). Snapshot is in the job summary."
           fi
