@@ -1,15 +1,12 @@
 name: Release
 
-# Publishes automatically when package.json changes on main (a version bump).
-# Merge a PR that bumps the version and this builds, tests, publishes to npm,
-# and cuts a GitHub Release (which updates the Marketplace listing).
-# One-time setup: add a repository secret NPM_TOKEN (an npm automation token).
+# HOSTED CI INDEPENDENCE
+# Optional manual wrapper only. Publishing must never require GitHub Actions.
+# Native release path is documented in docs/HOSTED_CI_POLICY.md and uses the same
+# npm + gh commands from a controlled machine.
 
 on:
-  push:
-    branches: [main]
-    paths:
-      - package.json
+  workflow_dispatch:
 
 permissions:
   contents: write
@@ -58,4 +55,4 @@ jobs:
           gh release create "v${{ steps.v.outputs.version }}" \
             --target "${{ github.sha }}" \
             --title "v${{ steps.v.outputs.version }}" \
-            --notes "Automated release of v${{ steps.v.outputs.version }}. See the README for what changed."
+            --notes "Manual hosted release of v${{ steps.v.outputs.version }}. See the README for what changed."
