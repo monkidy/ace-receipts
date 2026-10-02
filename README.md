@@ -6,6 +6,8 @@ AI agents can cook. Make them bring receipts.
 
 ACE Receipts is a tiny CLI + GitHub Action that scans AI-agent GitHub workflows and AI-generated diffs for proof, risk, permission, missing evidence, and closeout.
 
+> **Current public role:** a standalone deterministic tool. The ACE name is historical product naming; this repository is not the current private SYSTASYS runtime and is not a source of Asso or SYSTASYS authority.
+
 No cloud. No API key. No vibes.
 
 ```bash
@@ -173,7 +175,7 @@ The report carries the overall posture (verdict, gate, proof, risk, permission, 
 {
   "schema": "ace.receipt.v0",
   "tool": "ace-receipts",
-  "version": "0.1.2",
+  "version": "0.2.0",
   "command": "scan-workflows",
   "verdict": "hold",
   "gate": "fail",
@@ -267,13 +269,11 @@ A receipt is a small operational record: what was seen, what was proven, what is
 
 No receipt, no passage.
 
-## Pro / Governance Pack (in progress)
+## Current public status
 
-The CLI and the Action are free, and they stay free.
+ACE Receipts is maintained as a standalone public tool under Apache-2.0. It is not presented here as an active commercial offer or as a current private SYSTASYS runtime component.
 
-For teams under audit or the EU AI Act, a **Governance Pro Pack** is in the works: hardened `.ace/policy.yml` templates, and a crosswalk from each rule to the OWASP LLM Top 10 and EU AI Act articles, so a scan result maps straight to the framework a reviewer or auditor asks about.
-
-Want it for your team? [Open an issue](https://github.com/monkidy/ace-receipts/issues/new) or [sponsor the project](https://github.com/sponsors/monkidy).
+The roadmap above is a backlog of possible product improvements, not a promise, launch plan, permission to sell, or instruction to contact people. Any future packaging, distribution, or commercial move is a separate decision that requires fresh evidence and explicit authority.
 
 ## License
 

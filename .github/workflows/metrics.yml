@@ -1,4 +1,4 @@
-name: Business metrics
+name: Adoption metrics
 
 # HOSTED CI INDEPENDENCE
 # The metrics collector is scripts/metrics.mjs and is directly runnable on any
@@ -20,7 +20,7 @@ jobs:
         with:
           node-version: 20
 
-      - name: Collect metrics
+      - name: Collect adoption metrics
         env:
           GITHUB_TOKEN: ${{ github.token }}
         run: node scripts/metrics.mjs
