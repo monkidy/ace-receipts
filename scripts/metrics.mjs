@@ -1,8 +1,8 @@
 import fs from "node:fs";
 import path from "node:path";
 
-// Weekly business follow-up for ace-receipts. Collects npm + GitHub metrics,
-// appends a snapshot row, and prints a short read (the recurring analysis).
+// Adoption snapshot for ace-receipts. Collects npm + GitHub metrics,
+// appends a snapshot row, and prints a descriptive read without creating action authority.
 // Defensive: any failed fetch falls back to 0 so the job never breaks.
 
 const REPO = process.env.GITHUB_REPOSITORY || "monkidy/ace-receipts";
@@ -84,20 +84,20 @@ async function main() {
     "utf8",
   );
 
-  // The recurring read: turn numbers into the next business move.
+  // Summarize the observed signal without turning metrics into authority to act.
   let read;
   if (proIssues > 0) {
-    read = "SIGNAL Phase 2: a 'pro' issue is open. Build and sell the Governance Pro Pack now.";
+    read = "Interest signal: one or more open issues carry the 'pro' label. Review the signal; no product build, sale, outreach, or distribution is authorized by this metric.";
   } else if (prev && (npm7 > prev.npm_7d || stars > prev.stars)) {
-    read = "Adoption rising. Keep distribution going: one more sharp post or a targeted message.";
+    read = "Adoption signal rose versus the previous snapshot. Record the change; no distribution or outreach action is implied.";
   } else if (!prev) {
     read = "First snapshot recorded. Baseline set.";
   } else {
-    read = "Flat week, no signal yet. Try a new angle or a new target audience for the next post.";
+    read = "No clear adoption increase versus the previous snapshot. Record the observation; no action is implied.";
   }
 
   const summary = [
-    `# ACE Receipts — weekly business follow-up (${date})`,
+    `# ACE Receipts — adoption snapshot (${date})`,
     "",
     "| Metric | Now | WoW |",
     "| --- | --- | --- |",
@@ -106,7 +106,7 @@ async function main() {
     `| GitHub stars | ${stars} | ${delta(stars, prev?.stars)} |`,
     `| Forks | ${forks} | ${delta(forks, prev?.forks)} |`,
     `| Open issues | ${openIssues} | ${delta(openIssues, prev?.open_issues)} |`,
-    `| 'pro' issues (paid demand) | ${proIssues} | ${delta(proIssues, prev?.pro_issues)} |`,
+    `| 'pro' issues (interest signal) | ${proIssues} | ${delta(proIssues, prev?.pro_issues)} |`,
     "",
     `**Read:** ${read}`,
     "",
