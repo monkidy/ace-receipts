@@ -1,12 +1,10 @@
 # ACE Receipts
 
-[![CI](https://github.com/monkidy/ace-receipts/actions/workflows/ci.yml/badge.svg)](https://github.com/monkidy/ace-receipts/actions/workflows/ci.yml) [![npm](https://img.shields.io/npm/v/ace-receipts)](https://www.npmjs.com/package/ace-receipts) [![license](https://img.shields.io/badge/license-Apache--2.0-blue)](LICENSE)
+[![npm](https://img.shields.io/npm/v/ace-receipts)](https://www.npmjs.com/package/ace-receipts) [![license](https://img.shields.io/badge/license-Apache--2.0-blue)](LICENSE)
 
 AI agents can cook. Make them bring receipts.
 
 ACE Receipts is a tiny CLI + GitHub Action that scans AI-agent GitHub workflows and AI-generated diffs for proof, risk, permission, missing evidence, and closeout.
-
-> **Current public role:** a standalone deterministic tool. The ACE name is historical product naming; this repository is not the current private SYSTASYS runtime and is not a source of Asso or SYSTASYS authority.
 
 No cloud. No API key. No vibes.
 
@@ -269,12 +267,8 @@ A receipt is a small operational record: what was seen, what was proven, what is
 
 No receipt, no passage.
 
-## Current public status
-
-ACE Receipts is maintained as a standalone public tool under Apache-2.0. It is not presented here as an active commercial offer or as a current private SYSTASYS runtime component.
-
-The roadmap above is a backlog of possible product improvements, not a promise, launch plan, permission to sell, or instruction to contact people. Any future packaging, distribution, or commercial move is a separate decision that requires fresh evidence and explicit authority.
-
 ## License
 
 Apache-2.0. See [LICENSE](LICENSE).
+
+<p align="center"><sub><b>ACE Receipts</b> by <b>SYSTASYS</b> · made by Hichem Benali</sub></p>
