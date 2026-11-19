@@ -1,4 +1,4 @@
-<p align="center"><img src="docs/assets/ace-receipts-hero.png" alt="ACE Receipts — editorial illustration of proof, risk and permission in a review receipt." width="100%"></p>
+<p align="center"><img src="docs/assets/ace-receipts-hero-v3.webp" alt="ACE Receipts, an original illustrated receipt emblem. Decorative artwork, not a scan or proof of safety." width="100%"></p>
 
 # ACE Receipts
 
