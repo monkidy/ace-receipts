@@ -1,16 +1,22 @@
+<p align="center"><picture><source media="(max-width: 600px)" srcset="docs/assets/ace-hero-v4-mobile.webp"><img src="docs/assets/ace-hero-v4-desktop.webp" alt="ACE Receipts. Original graphical illustration of proof, risk and permission checks; not a real signed receipt or verified safety result." width="100%"></picture></p>
+
 # ACE Receipts
 
-[![npm](https://img.shields.io/npm/v/ace-receipts)](https://www.npmjs.com/package/ace-receipts) [![license](https://img.shields.io/badge/license-Apache--2.0-blue)](LICENSE)
+**AI agents can cook. Make them bring receipts.**
 
-AI agents can cook. Make them bring receipts.
+A local CLI and GitHub Action that reviews AI-agent workflows and code diffs for **evidence, risk and permission** before a change is accepted. Its checks are deterministic. It does not replace a human reviewer or guarantee that malicious changes will be found.
 
-ACE Receipts is a tiny CLI + GitHub Action that scans AI-agent GitHub workflows and AI-generated diffs for proof, risk, permission, missing evidence, and closeout.
-
-No cloud. No API key. No vibes.
+[**Try the demo**](#install--run) · [What it checks](#what-it-does--what-it-does-not-do) · [Known limitations](#limitations) · [npm](https://www.npmjs.com/package/ace-receipts)
 
 ```bash
 npx ace-receipts demo
 ```
+
+The demo deliberately returns **HOLD** (exit code 1). A successful demonstration here is a closed gate, not a green exit code.
+
+[![npm](https://img.shields.io/npm/v/ace-receipts)](https://www.npmjs.com/package/ace-receipts) [![license](https://img.shields.io/badge/license-Apache--2.0-blue)](LICENSE)
+
+---
 
 ## The Gate Wizard
 
