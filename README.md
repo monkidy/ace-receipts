@@ -1,4 +1,4 @@
-<p align="center"><img src="docs/assets/ace-receipts-hero-v3.webp" alt="ACE Receipts, an original illustrated receipt emblem. Decorative artwork, not a scan or proof of safety." width="100%"></p>
+<p align="center"><picture><source media="(max-width: 600px)" srcset="docs/assets/ace-receipts-hero-mobile-v3.webp"><img src="docs/assets/ace-receipts-hero-v3.webp" alt="ACE Receipts, an original illustrated receipt emblem. Decorative artwork, not a scan or proof of safety." width="100%"></picture></p>
 
 # ACE Receipts
 
